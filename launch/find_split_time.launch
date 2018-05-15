@@ -1,0 +1,5 @@
+<launch>
+  <node pkg="rosbag" type="record" name="record" args="record -O target.bag /odom /scan /cmd_vel /tf" output="screen" />
+
+  <node pkg="raspimouse_map_splitter" name="map_splitter" type="map_splitter" output="screen" />
+</launch>

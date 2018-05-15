@@ -32,6 +32,7 @@ void MapSplitter::generateShellScript(double kidnapped_time){
   outputfile << "rosbag filter target.bag target_after.bag \"t.secs >\"" << kidnapped_time << "\n";
 
   outputfile.close();
+  ROS_INFO("Shell script generated.");
 }
 
 int main(int argc, char **argv){
