@@ -1,5 +1,9 @@
 <launch>
   <node pkg="rosbag" type="record" name="record" args="record -O target.bag /odom /scan /cmd_vel /tf" output="screen" />
 
+  <param name="time_margin_1" value="-2.0" />
+  <param name="time_margin_2" value="10.0" />
+  <param name="entropy_threshold" value="-3.0" />
+
   <node pkg="raspimouse_map_splitter" name="map_splitter" type="map_splitter" output="screen" />
 </launch>
