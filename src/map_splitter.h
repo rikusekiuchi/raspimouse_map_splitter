@@ -11,7 +11,6 @@ public:
 
 private:
   ros::NodeHandle nh_;
-  ros::NodeHandle private_nh_;
   ros::Subscriber entropy_sub_;
   double time1;
   double time2;
