@@ -73,7 +73,7 @@ roslaunch raspimouse_navigation_2 remote_robot.launch
 Please kidnap the robot while generating the map and check that the following Info will be output.
 
 ```
-ROS \[ INFO\] \[ROS Time\]: Shell script generated.
+ROS [ INFO] [ROS Time]: Shell script generated.
 ```
 After checking the above info, please continue to generate the map as it is.
 
