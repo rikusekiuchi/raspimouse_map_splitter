@@ -19,6 +19,7 @@ This package requires the following to run:
 * ROS Package
   * raspimouse_gmapping - [zaki0929/raspimouse_gmapping](https://github.com/zaki0929/raspimouse_gmapping)
   * Customized gmapping - [zaki0929/gmapping](https://github.com/zaki0929/gmapping)
+  * raspimouse_transportation - [zaki0929/raspimouse_transportation](https://github.com/zaki0929/raspimouse_transportation)
   * raspimouse_navigation_2 - [zaki0929/raspimouse_navigation_2](https://github.com/zaki0929/raspimouse_navigation_2)
   * Customized ROS Navigation Stack - [zaki0929/navigation](https://github.com/zaki0929/navigation)
   * IMU Driver - [AtsushiSaito/lab_usb_9axisimu_driver](https://github.com/AtsushiSaito/lab_usb_9axisimu_driver)
@@ -36,6 +37,7 @@ sudo apt install ros-kinetic-urg-node
 cd ~/catkin_ws/src
 git clone https://github.com/zaki0929/raspimouse_gmapping.git
 git clone https://github.com/zaki0929/gmapping.git
+git clone https://github.com/zaki0929/raspimouse_transportation.git
 git clone https://github.com/zaki0929/raspimouse_navigation_2.git
 git clone https://github.com/zaki0929/navigation.git
 git clone https://github.com/AtsushiSaito/lab_usb_9axisimu_driver.git
@@ -66,6 +68,14 @@ roslaunch raspimouse_map_splitter generate_bag_file_and_shell_script.launch
 
 ```
 roslaunch raspimouse_navigation_2 remote_robot.launch
+```
+
+If you want to run the robot automatically to create a map, please execute the following command.
+
+If you execute the following command, the robot will run along the left wall using sensor values from LIDAR.
+
+```
+rosrun raspimouse_transportation grid_base
 ```
 
 ### Step 2
