@@ -72,7 +72,7 @@ roslaunch raspimouse_navigation_2 remote_robot.launch
 
 If you want to run the robot automatically to create a map, please execute the following command.
 
-If you execute the following command, the robot will run along the left wall using sensor values from LIDAR.
+Then the robot run along the left wall using sensor values from LIDAR.
 
 ```
 rosrun raspimouse_transportation grid_base
