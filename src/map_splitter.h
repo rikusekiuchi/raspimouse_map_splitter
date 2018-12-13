@@ -6,17 +6,17 @@
 class MapSplitter{
 public:
   MapSplitter();
-  double entropy;
-  double entropy_temp;
+  double w_sum;
+  double w_sum_temp;
+  double w_sum_diff_temp;
 
 private:
   ros::NodeHandle nh_;
-  ros::Subscriber entropy_sub_;
+  ros::Subscriber w_sum_sub_;
   double time1;
   double time2;
-  double entropy_th;
   bool shell_script_generated;
-  void entropyCallback(const std_msgs::Float64::ConstPtr& msg);
+  void wSumCallback(const std_msgs::Float64::ConstPtr& msg);
   void computeKidnappedTime();
   void generateShellScript(double kidnapped_time);
 };

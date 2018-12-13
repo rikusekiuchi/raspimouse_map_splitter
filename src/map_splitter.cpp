@@ -1,39 +1,46 @@
 #include "map_splitter.h"
 
-MapSplitter::MapSplitter(){
-  if(!nh_.getParam("entropy_threshold", entropy_th)){
-    entropy_th = -3.0;
-  }
-  if(!nh_.getParam("time_margin_1", time1)){
+MapSplitter::MapSplitter() 
+{
+  if(!nh_.getParam("time_margin_1", time1)) 
+  {
     time1 = 4.0;
   }
-  if(!nh_.getParam("time_margin_2", time2)){
+  if(!nh_.getParam("time_margin_2", time2)) 
+  {
     time2 = 10.0;
   }
 
-  entropy_sub_ = nh_.subscribe("slam_gmapping/entropy", 1, &MapSplitter::entropyCallback, this);
-  entropy_temp = 0;
+  w_sum_sub_ = nh_.subscribe("slam_gmapping/w_sum", 1, &MapSplitter::wSumCallback, this);
+  w_sum_temp = 1;
   shell_script_generated = false;
 }
 
-void MapSplitter::entropyCallback(const std_msgs::Float64::ConstPtr& msg){
-  entropy = msg->data; 
+void MapSplitter::wSumCallback(const std_msgs::Float64::ConstPtr& msg)
+{
+  w_sum = msg->data; 
   computeKidnappedTime();
 }
 
-void MapSplitter::computeKidnappedTime(){
-  double entropy_diff = entropy - entropy_temp; 
+void MapSplitter::computeKidnappedTime() 
+{
+  double w_sum_diff = w_sum - w_sum_temp; 
 
-  if(entropy_diff < entropy_th && !shell_script_generated){
+  if((w_sum == 0 && w_sum_temp == 0)
+  || (w_sum_diff < 0 && w_sum_diff_temp < 0)
+  && !shell_script_generated) 
+  {
     ros::Time t = ros::Time::now();
     generateShellScript(t.sec);
     shell_script_generated = true;
   }
 
-  entropy_temp = entropy;
+  w_sum_temp = w_sum;
+  w_sum_diff_temp = w_sum_diff;
 }
 
-void MapSplitter::generateShellScript(double kidnapped_time){
+void MapSplitter::generateShellScript(double kidnapped_time) 
+{
   std::ofstream outputfile("split.sh");
 
   outputfile << "#! /bin/bash" << "\n";
@@ -44,7 +51,8 @@ void MapSplitter::generateShellScript(double kidnapped_time){
   ROS_INFO("Shell script generated.");
 }
 
-int main(int argc, char **argv){
+int main(int argc, char **argv)
+{
   ros::init(argc, argv, "map_splitter");
   
   MapSplitter MSobj;
