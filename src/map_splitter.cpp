@@ -10,9 +10,13 @@ MapSplitter::MapSplitter()
   {
     time2 = 10.0;
   }
+  if(!nh_.getParam("loose_condition", loose_condition)) 
+  {
+    loose_condition = false;
+  }
 
   w_sum_sub_ = nh_.subscribe("slam_gmapping/w_sum", 1, &MapSplitter::wSumCallback, this);
-  w_sum_temp = 1;
+  w_sum_temp = 0;
   shell_script_generated = false;
 }
 
@@ -26,8 +30,8 @@ void MapSplitter::computeKidnappedTime()
 {
   double w_sum_diff = w_sum - w_sum_temp; 
 
-  if((w_sum == 0 && w_sum_temp == 0)
-  || (w_sum_diff < 0 && w_sum_diff_temp < 0)
+  if((w_sum_diff < 0 && w_sum_diff_temp < 0)
+  || (w_sum_diff < 0 && loose_condition)
   && !shell_script_generated) 
   {
     ros::Time t = ros::Time::now();

@@ -15,6 +15,7 @@ private:
   ros::Subscriber w_sum_sub_;
   double time1;
   double time2;
+  bool loose_condition;
   bool shell_script_generated;
   void wSumCallback(const std_msgs::Float64::ConstPtr& msg);
   void computeKidnappedTime();
