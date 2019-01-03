@@ -34,14 +34,15 @@ Next, download the dependent ROS package and this repository.
 
 ```
 sudo apt install ros-kinetic-urg-node
+sudo apt install ros-kinetic-slam-gmapping
+git clone https://github.com/zaki0929/slam_gmapping.git
+cp -r slam_gmapping/gmapping ~/catkin_ws/src/.
 cd ~/catkin_ws/src
 git clone https://github.com/zaki0929/raspimouse_gmapping.git
-git clone https://github.com/zaki0929/gmapping.git
 git clone https://github.com/zaki0929/raspimouse_transportation.git
 git clone https://github.com/zaki0929/raspimouse_navigation_2.git
 git clone https://github.com/zaki0929/navigation.git
 git clone https://github.com/AtsushiSaito/lab_usb_9axisimu_driver.git
-git clone https://github.com/zaki0929/raspimouse_navigation_2.git
 ```
 
 Finally, build the downloaded ones.
