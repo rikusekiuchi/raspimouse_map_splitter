@@ -23,7 +23,9 @@ MapSplitter::MapSplitter()
 void MapSplitter::wSumCallback(const std_msgs::Float64::ConstPtr& msg)
 {
   w_sum = msg->data; 
-  computeKidnappedTime();
+  if (!shell_script_generated) {
+    computeKidnappedTime();
+  }
 }
 
 void MapSplitter::computeKidnappedTime() 

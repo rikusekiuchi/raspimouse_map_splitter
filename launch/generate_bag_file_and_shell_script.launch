@@ -1,7 +1,7 @@
 <launch>
   <node pkg="rosbag" type="record" name="record" args="record -O target.bag /odom /scan /cmd_vel /tf" output="screen" />
 
-  <param name="time_margin_1" value="2.0" />
+  <param name="time_margin_1" value="8.0" />
   <param name="time_margin_2" value="2.0" />
   <param name="loose_condition" value="true" />
 
